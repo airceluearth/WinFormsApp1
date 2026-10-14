@@ -1,9 +1,12 @@
 <Solution>
   <Configurations>
-    <Platform Name="Any CPU" />
     <Platform Name="x86" />
   </Configurations>
   <Project Path="WinFormsApp1/WinFormsApp1.csproj">
-    <Platform Solution="*|x86" Project="x86" />
+    <Platform Project="x86" />
+  </Project>
+  <Project Path="WinFormsApp1_Setup\WinFormsApp1_Setup.wixproj" Id="be74e0d0-a250-bb3c-9ba8-40322544c13a">
+    <Platform Project="x86" />
+    <Build />
   </Project>
 </Solution>

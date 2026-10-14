@@ -1,0 +1,11 @@
+<Include xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <StandardDirectory Id="ProgramMenuFolder">
+    <Directory Id="ProgramMenuSubfolder" Name="WinFormsApp1">
+      <Component Id="ApplicationShortcuts" Guid="0d806713-1f1b-85e9-4c32-a11041e47c08">
+        <Shortcut Id="ID_WinFormsApp1" Name="WinFormsApp1" Description="WinFormsApp1" Target="[INSTALLDIR]WinFormsApp1.exe" WorkingDirectory="INSTALLDIR" />
+        <RegistryValue Root="HKCU" Key="Software\WinFormsApp1\WinFormsApp1" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+        <RemoveFolder Id="ProgramMenuSubfolder" On="uninstall" />
+      </Component>
+    </Directory>
+  </StandardDirectory>
+</Include>

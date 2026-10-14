@@ -1,0 +1,32 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+  <?include Defines.wxi ?>
+  <Package Name="$(var.ProductName)" Language="1033" Version="$(var.ProductVersion)" Manufacturer="$(var.Manufacturer)" UpgradeCode="$(var.ProductUpgradeCode)" Scope="perMachine">
+    <MediaTemplate EmbedCab="yes" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <Feature Id="ProductFeature" Title="$(var.ProductName) Setup" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="ProductFilesComponentGroup" />
+    </Feature>
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+    <ui:WixUI Id="WixUI_InstallDir" />
+  </Package>
+  <Fragment>
+    <StandardDirectory Id="ProgramFilesFolder">
+      <Directory Id="INSTALLDIR" Name="WinFormsApp1" />
+    </StandardDirectory>
+    <?include Shortcuts.wxi ?>
+  </Fragment>
+  <Fragment>
+    <!-- Harvested at build time from the referenced project's output: the toolset reads the directory
+         itself, so there is no generated authoring to keep in step with it. -->
+    <ComponentGroup Id="ProductFilesComponentGroup" Directory="INSTALLDIR">
+      <Files Include="$(var.WinFormsApp1.TargetDir)**" />
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLDIR">
+      <ComponentRef Id="ApplicationShortcuts" />
+    </ComponentGroup>
+  </Fragment>
+</Wix>
